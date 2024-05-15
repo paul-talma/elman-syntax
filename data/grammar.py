@@ -2,10 +2,10 @@ import random
 
 random.seed(0)
 
-# number of sentences
+# number of sentences to generate
 num_sentences = 10_000
 
-# categories
+# define categories
 N_HUM = ["man", "woman", "boy", "girl"]
 N_AGRESS = ["dragon", "monster", "lion"]
 N_ANIM = N_HUM + N_AGRESS + ["cat", "mouse", "dog"]
@@ -19,6 +19,7 @@ V_PERCEPT = ["smell", "see"]
 V_DESTROY = ["break", "smash"]
 V_EAT = ["eat"]
 
+# define templates
 templates = []
 templates.append([N_HUM, V_EAT, N_FOOD])
 templates.append([N_HUM, V_PERCEPT, N_INANIM])
@@ -37,8 +38,8 @@ templates.append([N_AGRESS, V_EAT, N_HUM])
 templates.append([N_AGRESS, V_EAT, N_ANIM])
 templates.append([N_AGRESS, V_EAT, N_FOOD])
 
-vocab = set([word for temp in templates for cat in temp for word in cat])
-# vocab = set(sum(sum(templates,[]),[]))
+# same as: vocab = set([word for temp in templates for cat in temp for word in cat])
+vocab = set(sum(sum(templates,[]),[]))
 print("vocab size", len(vocab))
 
 with open("data/elman_sentences.txt", "w") as fid:
